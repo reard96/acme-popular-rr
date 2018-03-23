@@ -2,13 +2,13 @@ const conn = require('./conn');
 const User = require('./User');
 
 const initialUsers = [
-  { name: 'batman', rating: 10},
-  { name: 'superman', rating: 4},
-  { name: 'spiderman', rating: 8},
-  { name: 'wonder woman', rating: 12},
-  { name: 'the hulk', rating: -4},
-  { name: 'catwoman', rating: 7},
-  { name: 'the flash', rating: 9},
+  { name: 'Batman', rating: 10},
+  { name: 'Superman', rating: 4},
+  { name: 'Spiderman', rating: 8},
+  { name: 'Wonder Woman', rating: 12},
+  { name: 'The Hulk', rating: -4},
+  { name: 'Catwoman', rating: 7},
+  { name: 'The Flash', rating: 9},
 ];
 
 const sync = () => {
