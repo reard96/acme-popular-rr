@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveUser } from './store';
+import { saveUser, deleteUser } from './store';
 
 class User extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class User extends Component {
     };
     this.onChangeName = this.onChangeName.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onChangeName(ev) {
@@ -22,6 +23,10 @@ class User extends Component {
     this.props.saveUser(user);
   }
 
+  onDelete() {
+    this.props.deleteUser({ id: this.props.id });
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ name: nextProps.user ? nextProps.user.name : '' });
   }
@@ -29,7 +34,7 @@ class User extends Component {
   render() {
     const { user } = this.props;
     const { name } = this.state;
-    const { onChangeName, onSave } = this;
+    const { onChangeName, onSave, onDelete } = this;
 
     if (!user) {
       return null;
@@ -41,6 +46,7 @@ class User extends Component {
           <input value={ name } onChange={ onChangeName } />
           <button>Update</button>
         </form>
+        <button onClick={ onDelete }>Delete</button>
       </div>
     );
   }
@@ -55,7 +61,8 @@ const mapStateToProps = ({ users }, { id }) => {
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    saveUser: (user) => dispatch(saveUser(user, history))
+    saveUser: (user) => dispatch(saveUser(user, history)),
+    deleteUser: (user) => dispatch(deleteUser(user, history))
   };
 };
 
