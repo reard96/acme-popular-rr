@@ -11,6 +11,9 @@ const Nav = ({ users }) => {
       <li>
         <Link to="/users">Users ({ users.length })</Link>
       </li>
+      <li>
+      <Link to="/users/create">Create a User</Link>
+    </li>
     </ul>
   );
 };

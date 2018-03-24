@@ -37,7 +37,9 @@ class User extends Component {
     const { onChangeName, onSave, onDelete } = this;
 
     if (!user) {
-      return null;
+      return (
+        <div>No user found!</div>
+      );
     }
     return (
       <div>

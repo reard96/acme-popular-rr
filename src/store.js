@@ -5,6 +5,7 @@ import axios from 'axios';
 const SET_USERS = 'SET_USERS';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
+const CREATE_USER = 'CREATE_USER';
 
 const usersReducer = (state = [], action) => {
   switch(action.type) {
@@ -16,6 +17,9 @@ const usersReducer = (state = [], action) => {
       break;
       case DELETE_USER:
       state = state.filter(user => user.id !== action.user.id);
+      break;
+      case CREATE_USER:
+      state = [...state, action.user];
       break;
   }
   return state;
@@ -38,11 +42,25 @@ const loadUsers = () => {
 };
 
 const saveUser = (user, history) => {
+  if (user.id) {
+    return (dispatch) => {
+      return axios.put(`api/users/${user.id}`, user)
+        .then(result => result.data)
+        .then(user => dispatch({
+          type: UPDATE_USER,
+          user
+        })
+      )
+      .then(() => {
+        history.push('/users');
+      });
+    };
+  }
   return (dispatch) => {
-    return axios.put(`api/users/${user.id}`, user)
+    return axios.post('api/users', user)
       .then(result => result.data)
       .then(user => dispatch({
-        type: UPDATE_USER,
+        type: CREATE_USER,
         user
       })
     )
