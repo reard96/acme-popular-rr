@@ -6,9 +6,11 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.user ? this.props.user.name : ''
+      name: this.props.user ? this.props.user.name : '',
+      rating: this.props.user ? this.props.user.rating : 0
     };
     this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeRating = this.onChangeRating.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onDelete = this.onDelete.bind(this);
   }
@@ -17,9 +19,13 @@ class User extends Component {
     this.setState({ name: ev.target.value });
   }
 
+  onChangeRating(ev) {
+    this.setState({ rating: ev.target.value });
+  }
+
   onSave(ev) {
     ev.preventDefault();
-    const user = { id: this.props.id, name: this.state.name };
+    const user = { id: this.props.id, name: this.state.name, rating: this.state.rating };
     this.props.saveUser(user);
   }
 
@@ -34,7 +40,8 @@ class User extends Component {
   render() {
     const { user } = this.props;
     const { name } = this.state;
-    const { onChangeName, onSave, onDelete } = this;
+    const { rating } = this.state;
+    const { onChangeName, onChangeRating, onSave, onDelete } = this;
 
     if (!user) {
       return (
@@ -46,7 +53,11 @@ class User extends Component {
         <h1>{ user.name }</h1>
         <form onSubmit={ onSave }>
           <input value={ name } onChange={ onChangeName } />
-          <button>Update</button>
+          <button>Update Name</button>
+        </form>
+        <form onSubmit={ onSave }>
+          <input value={ rating } onChange={ onChangeRating } />
+          <button>Update Rating</button>
         </form>
         <button onClick={ onDelete }>Delete</button>
       </div>
