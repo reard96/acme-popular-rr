@@ -38,7 +38,7 @@ class UserCreate extends Component {
         <form onSubmit={ onSave }>
           <input type="text" value={ name } onChange={ onChangeName } />
           <input type="number" value={ rating } onChange={ onChangeRating } />
-          <button>Create User</button>
+          <button className="btn btn-success">Create User</button>
         </form>
       </div>
     );

@@ -15,9 +15,9 @@ const Users = ({ users }) => {
                 { user.name }
               </Link>
               <br />
-              <button> - </button>
-              { user.rating }
-              <button> + </button>
+              <button className="btn btn-danger"> - </button>
+                <span className="badge">{ user.rating }</span>
+              <button className="btn btn-success"> + </button>
             </li>
           );
         })

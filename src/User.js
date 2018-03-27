@@ -53,9 +53,9 @@ class User extends Component {
         <form onSubmit={ onSave }>
           <input type="text" value={ name } onChange={ onChangeName } />
           <input type="number" value={ rating } onChange={ onChangeRating } />
-          <button>Update User</button>
+          <button className="btn btn-primary">Update User</button>
         </form>
-        <button onClick={ onDelete }>Delete</button>
+        <button className="btn btn-danger" onClick={ onDelete }>Delete</button>
       </div>
     );
   }
