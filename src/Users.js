@@ -15,7 +15,9 @@ const Users = ({ users }) => {
                 { user.name }
               </Link>
               <br />
+              <button> - </button>
               { user.rating }
+              <button> + </button>
             </li>
           );
         })

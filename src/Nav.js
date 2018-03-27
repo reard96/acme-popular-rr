@@ -1,22 +1,41 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, matchPath } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Nav = ({ users }) => {
   return (
     <ul>
       <li>
-       <Link to="/">Home</Link>
+      {
+        path === '/' ? (
+          <span>Home</span>
+        ) : (
+          <Link to="/">Home</Link>
+        )
+      }
       </li>
       <li>
-        <Link to="/users">Users ({ users.length })</Link>
+      {
+        path === '/users' ? (
+          <span>Users ({ users.length })</span>
+        ) : (
+          <Link to="/users">Users ({ users.length })</Link>
+        )
+      }
       </li>
       <li>
-      <Link to="/users/create">Create a User</Link>
+      {
+        path === '/users/create' ? (
+          <span>Create a User</span>
+        ) : (
+          <Link to="/users/create">Create a User</Link>
+        )
+      }
     </li>
     </ul>
   );
 };
+
 
 const mapStateToProps = ({ users }) => {
   return {
@@ -25,3 +44,4 @@ const mapStateToProps = ({ users }) => {
 };
 
 export default connect(mapStateToProps)(Nav);
+
