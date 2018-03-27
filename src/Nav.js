@@ -1,37 +1,39 @@
 import React from 'react';
-import { connect, matchPath } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Nav = ({ users }) => {
   return (
     <ul>
       <li>
-      {
-        path === '/' ? (
-          <span>Home</span>
-        ) : (
-          <Link to="/">Home</Link>
-        )
-      }
+        <NavLink
+          exact
+          to="/"
+          activeStyle={{
+            fontWeight: 'bold',
+            color: 'red'
+           }}
+        >Home</NavLink>
       </li>
       <li>
-      {
-        path === '/users' ? (
-          <span>Users ({ users.length })</span>
-        ) : (
-          <Link to="/users">Users ({ users.length })</Link>
-        )
-      }
+        <NavLink
+          exact
+          to="/users"
+          activeStyle={{
+            fontWeight: 'bold',
+            color: 'red'
+          }}
+          >Users ({ users.length })</NavLink>
       </li>
       <li>
-      {
-        path === '/users/create' ? (
-          <span>Create a User</span>
-        ) : (
-          <Link to="/users/create">Create a User</Link>
-        )
-      }
-    </li>
+        <NavLink
+          exact
+          to="/users/create"
+          activeStyle={{
+            fontWeight: 'bold',
+            color: 'red'
+          }}>Create a User</NavLink>
+      </li>
     </ul>
   );
 };
@@ -43,5 +45,6 @@ const mapStateToProps = ({ users }) => {
   };
 };
 
-export default connect(mapStateToProps)(Nav);
+const Navbar = withRouter(connect(mapStateToProps)(Nav));
 
+export default Navbar;
