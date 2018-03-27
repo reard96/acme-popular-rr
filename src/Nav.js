@@ -2,7 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
-const Nav = ({ users }) => {
+const Nav = ({ users, popular }) => {
+  // hack to get popular.id to work
+  let popularLink = '';
+  if (popular !== undefined) {
+    popularLink = popular.id;
+  }
+
   return (
     <ul>
       <li>
@@ -34,14 +40,24 @@ const Nav = ({ users }) => {
             color: 'green'
           }}>Create a User</NavLink>
       </li>
+      <li>
+      <NavLink
+        exact
+        to={`/users/${popularLink}`}
+        activeStyle={{
+          fontWeight: 'bold',
+          color: 'green'
+        }}
+        >ACME's most popular user: { popular ? popular.name : 'Nobody!' }</NavLink>
+      </li>
     </ul>
   );
 };
 
-
 const mapStateToProps = ({ users }) => {
   return {
-    users
+    users,
+    popular: users.sort((low, high) => { return high.rating - low.rating; })[0]
   };
 };
 
