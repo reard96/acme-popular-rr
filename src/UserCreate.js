@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveUser, deleteUser } from './store';
+import { saveUser } from './store';
 
 class UserCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ''
+      name: 'New user goes here :)',
+      rating: 0
     };
     this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeRating = this.onChangeRating.bind(this);
     this.onSave = this.onSave.bind(this);
   }
 
@@ -16,22 +18,27 @@ class UserCreate extends Component {
     this.setState({ name: ev.target.value });
   }
 
+  onChangeRating(ev) {
+    this.setState({ rating: ev.target.value });
+  }
+
   onSave(ev) {
     ev.preventDefault();
-    const user = { name: this.state.name };
+    const user = { id: this.props.id, name: this.state.name, rating: this.state.rating };
     this.props.saveUser(user);
   }
 
   render() {
-    const { name } = this.state;
-    const { onChangeName, onSave } = this;
+    const { name, rating } = this.state;
+    const { onChangeName, onChangeRating, onSave } = this;
 
     return (
       <div>
         <h1>Create a User</h1>
         <form onSubmit={ onSave }>
-          <input value={ name } onChange={ onChangeName } />
-          <button>Create</button>
+          <input type="text" value={ name } onChange={ onChangeName } />
+          <input type="number" value={ rating } onChange={ onChangeRating } />
+          <button>Create User</button>
         </form>
       </div>
     );

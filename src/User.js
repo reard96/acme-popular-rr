@@ -39,8 +39,7 @@ class User extends Component {
 
   render() {
     const { user } = this.props;
-    const { name } = this.state;
-    const { rating } = this.state;
+    const { name, rating } = this.state;
     const { onChangeName, onChangeRating, onSave, onDelete } = this;
 
     if (!user) {

@@ -11,7 +11,7 @@ const Nav = ({ users }) => {
           to="/"
           activeStyle={{
             fontWeight: 'bold',
-            color: 'red'
+            color: 'green'
            }}
         >Home</NavLink>
       </li>
@@ -21,7 +21,7 @@ const Nav = ({ users }) => {
           to="/users"
           activeStyle={{
             fontWeight: 'bold',
-            color: 'red'
+            color: 'green'
           }}
           >Users ({ users.length })</NavLink>
       </li>
@@ -31,7 +31,7 @@ const Nav = ({ users }) => {
           to="/users/create"
           activeStyle={{
             fontWeight: 'bold',
-            color: 'red'
+            color: 'green'
           }}>Create a User</NavLink>
       </li>
     </ul>
